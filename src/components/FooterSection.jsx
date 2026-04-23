@@ -20,16 +20,16 @@
 // - ScrollReveal for scroll-triggered animations
 //
 // ============================================================
-
+ 
 // STEP 1: Imports
 // From "react": import { useEffect, useRef }
 // From "leaflet": import L from "leaflet"
 // Also import: "leaflet/dist/leaflet.css"
 // Import UI components: Separator, ScrollReveal
 // Import the logo: import logo from "../assets/Beans_logo.png"
-
+ 
 /* --- YOUR IMPORTS GO HERE --- */
-
+ 
 // STEP 2: Navigation data (outside the component)
 // Create a `navigation` object with these keys:
 //   shop: array of { name, href } objects
@@ -46,9 +46,9 @@
 //     - Each icon is a function: (props) => <svg ...>{path}</svg>
 //
 // Also: const currentYear = new Date().getFullYear();
-
+ 
 /* --- YOUR DATA OBJECTS GO HERE --- */
-
+ 
 // STEP 3: LocationMap component (helper component)
 // function LocationMap() { ... }
 //   - Use useRef for mapRef (DOM element) and mapInstance (Leaflet map)
@@ -57,9 +57,9 @@
 //   - Add a custom marker with a popup
 //   - Return cleanup function that calls map.remove()
 //   - Render: <div ref={mapRef} className="footer-map" />
-
+ 
 /* --- YOUR LOCATIONMAP COMPONENT GOES HERE --- */
-
+ 
 // STEP 4: Create and export FooterSection
 // export default function FooterSection() { ... }
 //
@@ -74,16 +74,16 @@
 //         Column 4: "Support" links rendered with .map()
 //       - <Separator />
 //       - Copyright line using {currentYear}
-
+ 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
-
+ 
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Separator from "./ui/Separator";
 import ScrollReveal from "./ui/ScrollReveal";
 import logo from "../assets/Beans_logo.png";
-
+ 
 const navigation = {
     shop: [
         { name: "All Coffee", href: "#shop" },
@@ -141,20 +141,20 @@ const navigation = {
         }
     ]
 };
-
+ 
 const currentYear = new Date().getFullYear();
-
+ 
 /* Leaflet map component */
 function LocationMap() {
     const mapRef = useRef(null);
     const mapInstance = useRef(null);
-
+ 
     useEffect(() => {
         if (mapInstance.current || !mapRef.current) return;
-
+ 
         const lat = 39.7386;
         const lng = -104.3256;
-
+ 
         const map = L.map(mapRef.current, {
             center: [lat, lng],
             zoom: 14,
@@ -162,14 +162,14 @@ function LocationMap() {
             zoomControl: true,
             attributionControl: true
         });
-
+ 
         L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
             attribution:
                 '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
             subdomains: "abcd",
             maxZoom: 19
         }).addTo(map);
-
+ 
         // Custom marker
         const icon = L.divIcon({
             className: "leaflet-map-pin",
@@ -184,7 +184,7 @@ function LocationMap() {
             iconAnchor: [18, 36],
             popupAnchor: [0, -38]
         });
-
+ 
         L.marker([lat, lng], { icon })
             .addTo(map)
             .bindPopup(
@@ -195,29 +195,29 @@ function LocationMap() {
                        style="font-size:12px;color:#d4922a;font-weight:600;">Get Directions →</a>
                 </div>`
             );
-
+ 
         mapInstance.current = map;
-
+ 
         return () => {
             map.remove();
             mapInstance.current = null;
         };
     }, []);
-
+ 
     return (
         <div ref={mapRef} className="footer-map" style={{ width: "100%", overflow: "hidden " }} />
     );
 }
-
+ 
 export default function FooterSection() {
     return (
         <footer className="footer">
-            <div className="max-auto max-w-7x1 px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 2x1:max-w-[1600px]">
+            <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 2xl:max-w-[1600px]">
                 {/* MAP */}
                 <ScrollReveal animation="fadeUp">
                     <LocationMap />
                 </ScrollReveal>
-
+ 
                 {/* FOOTER COLUMNS */}
                 <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
                     <ScrollReveal animation="fadeUp" className="col-span-2 md:col-span-1 space-y-4">
@@ -242,10 +242,10 @@ export default function FooterSection() {
                             ))}
                         </div>
                     </ScrollReveal>
-
+ 
                     <ScrollReveal animation="fadeUp" delay={0.1}>
                         <h4 className="footer-col">Shop</h4>
-
+ 
                         <ul role="list" className="footer-links mt-4">
                             {navigation.shop.map((item) => (
                                 <li key={item.name}>
@@ -254,7 +254,7 @@ export default function FooterSection() {
                             ))}
                         </ul>
                     </ScrollReveal>
-
+ 
                     <ScrollReveal animation="fadeUp" delay={0.2}>
                         <h4 className="footer-col">Company</h4>
                         <ul role="list" className="footer-links mt-4">
@@ -265,7 +265,7 @@ export default function FooterSection() {
                             ))}
                         </ul>
                     </ScrollReveal>
-
+ 
                     <ScrollReveal animation="fadeUp" delay={0.3}>
                         <h4 className="footer-col">Support</h4>
                         <ul role="list" className="footer-links mt-4">
@@ -277,13 +277,17 @@ export default function FooterSection() {
                         </ul>
                     </ScrollReveal>
                 </div>
-
+               
                 <Separator className="mt-16 mb-6" />
-
+               
                 <div className="footer-bottom">
-                    <p>&copy; {currentYear} The Beans Place, LLC. All rights reserved.</p>
+                    <p>
+                      &copy; {currentYear} The Beans Place, LLC. All rights reserved.  
+                    </p>
                 </div>
             </div>
         </footer>
     );
 }
+ 
+ 
