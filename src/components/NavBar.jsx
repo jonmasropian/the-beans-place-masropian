@@ -83,14 +83,12 @@
 /* --- YOUR COMPONENT CODE GOES HERE --- */
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/Beans_logo.png";
 import Button from "./ui/Button";
 
 export default function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    // menuOpen = total value, setMenuOpen = a function to update the value, useState() = current value
-
     const [scrolled, setScrolled] = useState(false);
 
     const closeMenu = () => setMenuOpen(false);
@@ -100,10 +98,7 @@ export default function NavBar() {
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-    //single line quote
-    /**
-     * multi-line quote
-     */
+
     return (
         <motion.header
             className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
@@ -126,7 +121,7 @@ export default function NavBar() {
 
                 {/* Desktop CTA */}
                 <Button variant="accent" size="sm" className="hidden md:inline-flex">
-                    Order Now
+                    Order Now ☕
                 </Button>
 
                 {/* Mobile Hamburger */}
@@ -137,13 +132,19 @@ export default function NavBar() {
                     onClick={() => setMenuOpen(!menuOpen)}
                     className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden">
                     <span
-                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+                            menuOpen ? "translate-y-2 rotate-45" : ""
+                        }`}
                     />
                     <span
-                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "opacity-0" : "opacity-100"}`}
+                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+                            menuOpen ? "opacity-0" : "opacity-100"
+                        }`}
                     />
                     <span
-                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+                        className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+                            menuOpen ? "-translate-y-2 -rotate-45" : ""
+                        }`}
                     />
                 </button>
             </div>
@@ -176,12 +177,13 @@ export default function NavBar() {
                                 className="text-base font-semibold">
                                 Contact
                             </a>
+
                             <Button
                                 variant="accent"
                                 size="sm"
                                 className="mt-2 w-full"
                                 onClick={closeMenu}>
-                                Order Now
+                                Order Now ☕
                             </Button>
                         </nav>
                     </motion.div>
