@@ -204,11 +204,11 @@ export default function ProductShowcase() {
                     <StaggerItem key={product.name} animation="fadeUp">
                         <motion.div
                             className="product-card"
-                            whhileHover={{ y: -8, transition: { duration: 0.25 } }}>
+                            whileHover={{ y: -8, transition: { duration: 0.25 } }}>
                             <div className="product-card-image">
                                 <img src={product.image} alt={product.name} loading="lazy" />
                                 {product.badge && (
-                                    <span className="product.badge">{product.badge}</span>
+                                    <span className="product-badge">{product.badge}</span>
                                 )}
                             </div>
 
@@ -218,7 +218,7 @@ export default function ProductShowcase() {
                                     <span className="product-price">{product.price}</span>
                                 </div>
                                 <p className="product-origin">
-                                    {product.origin} · {product.Roast} Roast
+                                    {product.origin} · {product.roast} Roast
                                 </p>
                                 <p className="product-notes">{product.notes}</p>
                                 <Button variant="primary" size="sm" className="w-full mt-3">
