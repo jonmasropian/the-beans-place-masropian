@@ -62,6 +62,7 @@ import ProductShowcase from "./components/ProductShowcase";
 import CtaSection from "./components/CtaSection";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
+import ContactForm from "./components/ContactForm";
 
 export default function App() {
     return (
@@ -103,6 +104,11 @@ export default function App() {
             {/* CONTACT */}
             <section className="bg-cta" id="contact">
                 <ContactSection />
+            </section>
+            
+            {/* Form */}
+            <section className="bg-cta" id="form">
+                <ContactForm />
             </section>
 
             {/* FOOTER */}
